@@ -9,7 +9,10 @@ class UserTest {
 
     @Test
     public void shouldCreatUserWithArg (){
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new User("", ""));
+        String login = "login";
+        String email = "@email.com";
+        User user = new User(login, email);
+        Assertions.assertTrue(login.equals(user.getLogin()) && email.equals(user.getEmail()));
     }
 
     @Test
@@ -20,14 +23,12 @@ class UserTest {
 
     @Test
     public void shouldEmailIsCorrect(){
-        User user = new User(login, email);
-        Assertions.assertTrue((user.getEmail().contains(".") && user.getEmail().contains("@")));
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> new User("login", "email"));
     }
 
     @Test
     public void shouldLoginAndEmailWereDifferent (){
-        User user = new User(login, email);
-        Assertions.assertFalse(email.equals(login));
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> new User("login", "login"));
     }
 
 

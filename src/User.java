@@ -3,13 +3,13 @@ public class User {
     private String email;
 
     public User() {
-        this.login = null;
-        this.email = null;
     }
 
     public User(String login, String email) {
         if (!login.isEmpty() && !email.isEmpty()&&
-                login!=null && email!=null){
+                login!=null && email!=null &&
+                !login.equals(email) &&
+                email.contains(".") && email.contains("@")){
             this.email = email;
             this.login = login;
         } else {
